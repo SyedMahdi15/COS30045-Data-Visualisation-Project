@@ -1,6 +1,6 @@
 # COS30045-Data-Visualisation-Project
 
-***Team Members:*** Syed Mahdi + Dilhani Seneviratne
+***Team 1E Members:*** Syed Mahdi + Dilhani Seneviratne
 
 ***Project topic:*** OECD Health Statistics
 
