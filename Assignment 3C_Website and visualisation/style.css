@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --background: #FBFAF6;
+  --panel: #F2F0E9;
+  --text: #1C231F;
+  --text-secondary: #4A5049;
+  --line: #D9D5C8;
+  --teal: #1D6B5C;
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --max: 1120px;
+  /* --measure: 640px; */
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.wrap{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.prose{
+  max-width: var(--measure);
+}
+
+/* ---------- Banner ---------- */
+
+.banner{
+  padding: 120px 32px 96px;
+  border-bottom: 1px solid var(--line);
+}
+
+.banner-subtitle{
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 20px;
+  letter-spacing: 0.01em;
+}
+
+.banner-title{
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  margin: 0 0 28px;
+  max-width: 920px;
+}
+
+.banner-title em{
+  font-style: italic;
+  font-weight: 500;
+  color: var(--teal);
+}
+
+.banner-summary{
+  font-size: 19px;
+  color: var(--text-secondary);
+  max-width: var(--measure);
+  margin: 0;
+}
