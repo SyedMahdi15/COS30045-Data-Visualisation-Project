@@ -34,9 +34,9 @@ body{
   padding: 0 32px;
 }
 
-.prose{
+/* .prose{
   max-width: var(--measure);
-}
+} */
 
 /* ---------- Banner ---------- */
 
@@ -74,4 +74,76 @@ body{
   color: var(--text-secondary);
   max-width: var(--measure);
   margin: 0;
+}
+
+/* ---------- Sections ---------- */
+
+section{
+  padding: 88px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+section:last-of-type{ border-bottom: none; }
+
+.section-head{
+  margin-bottom: 48px;
+}
+
+.section-title{
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  margin: 0 0 14px;
+  letter-spacing: -0.005em;
+}
+
+.section-text{
+  color: var(--text-secondary);
+  font-size: 17px;
+  max-width: var(--measure);
+  margin: 0;
+}
+
+/* ---------- Takeaways ---------- */
+
+.takeaways{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+
+.takeaway-num{
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--rust);
+  margin: 0 0 10px;
+}
+
+.takeaway h3{
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 19px;
+  margin: 0 0 10px;
+}
+
+.takeaway p{
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ---------- Footer ---------- */
+
+footer{
+  padding: 48px 0 80px;
+  /* padding: 88px 0; */
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+footer p{
+  font-size: 13px;
+  color: var(--text-secondary);
+  max-width: var(--measure);
 }
