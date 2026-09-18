@@ -1,120 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Assignment 3"/> 
-    <meta name="keywords" content="HTML, CSS, D3"/> 
-    <meta name="author" content="Team 1E - Syed Mahdi + Dilhani Seneviratne"/>
+
+    <meta name="description"
+        content="OECD healthcare spending and life expectancy data visualisation">
+
+    <meta name="keywords" content="HTML, CSS, D3, OECD, Healthcare, Life Expectancy">
+
+    <meta name="author"
+        content="Team 1E - Syed Mahdi + Dilhani Seneviratne">
+
     <link rel="stylesheet" href="style.css">
-    
+
     <title>Does spending more on healthcare increase life expectancy?</title>
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
+
+
 <body>
-<header class="banner">
-    <div class="wrap">
-        <p class="banner-subtitle">COS30045 Data Visualisation Assignment 3 - OECD Health Statistics, 2015–2025</p>
-        <h1 class="banner-title">Does spending more on healthcare increase <em>life expectancy</em> ?</h1>
-        <p class="banner-summary">
-        [Improve summary] This project explores the relationship between healthcare expenditure
-    and life expectancy across 10 wealthy countries.
-        </p>
-    </div>
-</header>
 
-<main>
-<section id="section-one">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Lorem ipsum dolor sit amet 1</h2>
-        <p class="section-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque lacus, consectetur eu imperdiet at, ultricies ac odio. Curabitur leo quam, ultricies quis ultrices nec, laoreet in nibh.
-        </p>
-      </div>
-      <div id="visual-1" class="visualisation" style="text-align: center;">
-        <img src="https://www.jaspersoft.com/content/dam/jaspersoft/images/graphics/infographics/line-chart-example.svg" alt="Line chart illustration" style="max-width: 600px; width: 100%; height: auto; display: inline-block;" />
-        </div>
-    </div>
-</section>
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-<section id="section-two">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Lorem ipsum dolor sit amet 2</h2>
-        <p class="section-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque lacus, consectetur eu imperdiet at, ultricies ac odio. Curabitur leo quam, ultricies quis ultrices nec, laoreet in nibh.
-        </p>
-      </div>
-      <div id="visual-1" class="visualisation" style="text-align: center;">
-        <img src="https://www.jaspersoft.com/content/dam/jaspersoft/images/graphics/infographics/line-chart-example.svg" alt="Line chart illustration" style="max-width: 600px; width: 100%; height: auto; display: inline-block;" />
-        </div>
-    </div>
-</section>
+    <header class="banner">
 
-<section id="section-three">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Lorem ipsum dolor sit amet 3</h2>
-        <p class="section-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque lacus, consectetur eu imperdiet at, ultricies ac odio. Curabitur leo quam, ultricies quis ultrices nec, laoreet in nibh.
-        </p>
-      </div>
-      <div id="visual-1" class="visualisation" style="text-align: center;">
-        <img src="https://www.jaspersoft.com/content/dam/jaspersoft/images/graphics/infographics/line-chart-example.svg" alt="Line chart illustration" style="max-width: 600px; width: 100%; height: auto; display: inline-block;" />
-        </div>
-    </div>
-</section>
+        <div class="wrap">
 
-<section id="key-takeaways">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">What the decade shows</h2>
-      </div>
-      <div class="takeaways">
-        <div class="takeaway">
-          <p class="takeaway-num">Country 1</p>
-          <h3>Lorem ipsum dolor sit amet</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque lacus, consectetur eu imperdiet at, ultricies ac odio. Curabitur leo quam, ultricies quis ultrices nec, laoreet in nibh. Nunc diam diam, mattis non venenatis tristique, lobortis at leo. Nam vel pretium augue.</p>
-        </div>
-        <div class="takeaway">
-          <p class="takeaway-num">Country 2</p>
-          <h3>Lorem ipsum dolor sit amet</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque lacus, consectetur eu imperdiet at, ultricies ac odio. Curabitur leo quam, ultricies quis ultrices nec, laoreet in nibh. Nunc diam diam, mattis non venenatis tristique, lobortis at leo. Nam vel pretium augue.</p>
-        </div>
-        <div class="takeaway">
-          <p class="takeaway-num">Overall</p>
-          <h3>Lorem ipsum dolor sit amet</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque lacus, consectetur eu imperdiet at, ultricies ac odio. Curabitur leo quam, ultricies quis ultrices nec, laoreet in nibh. Nunc diam diam, mattis non venenatis tristique, lobortis at leo. Nam vel pretium augue.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+            <p class="banner-subtitle">
+                COS30045 Data Visualisation Assignment 3 -
+                OECD Health Statistics, 2015–2024
+            </p>
 
-<footer>
-  <div class="wrap">
-    <p>
-      Data Source:
-      <a href="https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_HEALTH_STAT%40DF_LE&df[ag]=OECD.ELS.HD&df[vs]=1.1&utm_source=chatgpt.com&dq=.A...Y0........&pd=2015,&to[TIME_PERIOD]=false">Life Expectancy</a>
-      &
-      <a href="https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_SHA%40DF_SHA&df[ag]=OECD.ELS.HD&df[vs]=1.1&utm_source=chatgpt.com&dq=.A.EXP_HEALTH.PT_B1GQ._T.._T.._T...&pd=2015,&to[TIME_PERIOD]=false&vw=tb">Health expenditure and financing</a> 
-    <br>
-      [insert data T's & C's]. 
-    <br>
-      Countries shown: Australia, Canada, France,
-      Germany, Italy, Japan, Korea, New Zealand, United Kingdom, United States.
-    </p>
-    <p>
-    <br>
-    <strong>
-        COS30045 Assignment 3 - Team 1E (Sayed Mahdi + Dilhani Seneviratne)
-    </strong>
-    <br>    
-    Built with D3.js.
-    </p>
-  </div>
-</footer>
-<script src="script.js"></script>
+            <h1 class="banner-title">
+                Does spending more on healthcare increase
+                <em>life expectancy</em>?
+            </h1>
+
+            <p class="banner-summary">
+                This project explores the relationship between healthcare
+                expenditure and life expectancy across 10 selected OECD
+                countries from 2015 to 2024. The visualisations allow users
+                to compare healthcare spending, life expectancy outcomes,
+                and changes over time.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             VISUALISATION 1
+        ========================== -->
+
+        <section id="section-one">
+
+            <div class="wrap">
+
+                <div class="section-head">
+
+                    <h2 class="section-title">
+                        Healthcare Spending vs Life Expectancy
+                    </h2>
+
+                    <p class="section-text">
+                        Explore whether countries that spend more on
+                        healthcare per person tend to have higher
+                        life expectancy.
+                    </p>
+
+                </div>
+
+                <!-- Scatter plot will be created here using D3 -->
+                <div id="visual-1" class="visualisation"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             VISUALISATION 2
+        ========================== -->
+
+        <section id="section-two">
+
+            <div class="wrap">
+
+                <div class="section-head">
+
+                    <h2 class="section-title">
+                        Healthcare Spending Over Time
+                    </h2>
+
+                    <p class="section-text">
+                        Compare how healthcare expenditure per person
+                        has changed across selected OECD countries
+                        from 2015 to 2024.
+                    </p>
+
+                </div>
+
+                <!-- Healthcare spending line chart -->
+                <div id="visual-2" class="visualisation"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             VISUALISATION 3
+        ========================== -->
+
+        <section id="section-three">
+
+            <div class="wrap">
+
+                <div class="section-head">
+
+                    <h2 class="section-title">
+                        Life Expectancy Over Time
+                    </h2>
+
+                    <p class="section-text">
+                        Explore how life expectancy has changed across
+                        selected OECD countries between 2015 and 2024.
+                    </p>
+
+                </div>
+
+                <!-- Life expectancy line chart -->
+                <div id="visual-3" class="visualisation"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             KEY TAKEAWAYS
+        ========================== -->
+
+        <section id="key-takeaways">
+
+            <div class="wrap">
+
+                <div class="section-head">
+
+                    <h2 class="section-title">
+                        What the Decade Shows
+                    </h2>
+
+                </div>
+
+
+                <div class="takeaways">
+
+                    <div class="takeaway">
+
+                        <p class="takeaway-num">
+                            Healthcare Spending
+                        </p>
+
+                        <h3>
+                            Spending varies across countries
+                        </h3>
+
+                        <p>
+                            Healthcare expenditure per person differs
+                            considerably across the selected OECD countries.
+                            The visualisations allow these differences to be
+                            compared across countries and over time.
+                        </p>
+
+                    </div>
+
+
+                    <div class="takeaway">
+
+                        <p class="takeaway-num">
+                            Life Expectancy
+                        </p>
+
+                        <h3>
+                            Health outcomes also vary
+                        </h3>
+
+                        <p>
+                            Life expectancy differs between the selected
+                            countries. Exploring these differences alongside
+                            healthcare expenditure helps users investigate
+                            the relationship between spending and health
+                            outcomes.
+                        </p>
+
+                    </div>
+
+
+                    <div class="takeaway">
+
+                        <p class="takeaway-num">
+                            Overall
+                        </p>
+
+                        <h3>
+                            Exploring the relationship
+                        </h3>
+
+                        <p>
+                            By comparing healthcare spending and life
+                            expectancy together, the project investigates
+                            whether higher healthcare expenditure is
+                            associated with longer life expectancy across
+                            selected OECD countries.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="wrap">
+
+            <p>
+                Data Source:
+
+                <a href="https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_HEALTH_STAT%40DF_LE&df[ag]=OECD.ELS.HD&df[vs]=1.1"
+                    target="_blank">
+                    Life Expectancy
+                </a>
+
+                &amp;
+
+                <a href="https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_SHA%40DF_SHA&df[ag]=OECD.ELS.HD&df[vs]=1.1"
+                    target="_blank">
+                    Health Expenditure and Financing
+                </a>
+
+                <br><br>
+
+                Countries shown:
+                Australia, Canada, France, Germany, Italy, Japan,
+                Korea, New Zealand, United Kingdom and United States.
+            </p>
+
+
+            <p>
+
+                <strong>
+                    COS30045 Assignment 3 -
+                    Team 1E (Syed Mahdi + Dilhani Seneviratne)
+                </strong>
+
+                <br>
+
+                Built with D3.js.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
 </body>
+
 </html>

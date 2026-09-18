@@ -147,3 +147,43 @@ footer p{
   color: var(--text-secondary);
   max-width: var(--measure);
 }
+/* ---------- D3 Visualisations ---------- */
+
+.visualisation {
+  width: 100%;
+  min-height: 500px;
+}
+
+.visualisation svg {
+  display: block;
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.scatter-dot {
+  fill: var(--teal);
+  opacity: 0.8;
+  stroke: var(--background);
+  stroke-width: 2px;
+}
+
+.country-label {
+  font-family: var(--sans);
+  font-size: 12px;
+  fill: var(--text-secondary);
+}
+
+.axis-label {
+  font-family: var(--sans);
+  font-size: 14px;
+  fill: var(--text);
+  font-weight: 500;
+}
+
+.chart-note {
+  font-family: var(--sans);
+  font-size: 12px;
+  fill: var(--text-secondary);
+}
