@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,20 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-        content="OECD healthcare spending and life expectancy data visualisation">
+        content="The data visualisation is about spending on health and life expectancy by the OECD.">
 
-    <meta name="keywords" content="HTML, CSS, D3, OECD, Healthcare, Life Expectancy">
+    <meta name="keywords"
+        content="HTML, CSS, D3, OECD, Healthcare, Life Expectancy">
 
     <meta name="author"
         content="Team 1E - Syed Mahdi + Dilhani Seneviratne">
 
     <link rel="stylesheet" href="style.css">
 
-    <title>Does spending more on healthcare increase life expectancy?</title>
+    <title>Does increased health-care spending increase life expectancy?</title>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
-
 
 <body>
 
@@ -38,16 +39,15 @@
             </p>
 
             <h1 class="banner-title">
-                Does spending more on healthcare increase
-                <em>life expectancy</em>?
+                Does increased spending for health services mean
+                improved <em>life expectancy</em>?
             </h1>
 
             <p class="banner-summary">
-                This project explores the relationship between healthcare
-                expenditure and life expectancy across 10 selected OECD
-                countries from 2015 to 2024. The visualisations allow users
-                to compare healthcare spending, life expectancy outcomes,
-                and changes over time.
+                This project looks into the link between healthcare expenditure
+                and life expectancy in 10 selected OECD countries from
+                2015 to 2024. The visualisations allow users to compare
+                healthcare spending, life expectancy and changes over time.
             </p>
 
         </div>
@@ -56,6 +56,117 @@
 
 
     <main>
+
+        <!-- =========================
+             GUIDING QUESTIONS
+        ========================== -->
+
+        <section id="guiding-questions">
+
+            <div class="wrap">
+
+                <div class="section-head">
+
+                    <h2 class="section-title">
+                        Questions We Explore
+                    </h2>
+
+                    <p class="section-text">
+                        These five questions about healthcare costs and
+                        life expectancy in the selected OECD countries
+                        will be explored.
+                    </p>
+
+                </div>
+
+
+                <div class="questions-grid">
+
+                    <div class="question-card">
+
+                        <span class="question-number">01</span>
+
+                        <p>
+                            Do countries that spend more on healthcare
+                            tend to have longer life expectancy?
+                        </p>
+
+                        <a href="#section-one">
+                            Investigate the relationship &rarr;
+                        </a>
+
+                    </div>
+
+
+                    <div class="question-card">
+
+                        <span class="question-number">02</span>
+
+                        <p>
+                            How does healthcare spending per person differ
+                            across the selected OECD countries?
+                        </p>
+
+                        <a href="#section-two">
+                            Compare spending &rarr;
+                        </a>
+
+                    </div>
+
+
+                    <div class="question-card">
+
+                        <span class="question-number">03</span>
+
+                        <p>
+                            What is the life expectancy in each of the
+                            selected OECD countries?
+                        </p>
+
+                        <a href="#section-three">
+                            Explore life expectancy &rarr;
+                        </a>
+
+                    </div>
+
+
+                    <div class="question-card">
+
+                        <span class="question-number">04</span>
+
+                        <p>
+                            How have healthcare expenditure and life expectancy
+                            changed between 2015 and 2024?
+                        </p>
+
+                        <a href="#section-two">
+                            Explore trends &rarr;
+                        </a>
+
+                    </div>
+
+
+                    <div class="question-card">
+
+                        <span class="question-number">05</span>
+
+                        <p>
+                            Which countries have a relatively long life
+                            expectancy compared to their healthcare spending?
+                        </p>
+
+                        <a href="#section-one">
+                            Compare outcomes &rarr;
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
 
         <!-- =========================
              VISUALISATION 1
@@ -68,18 +179,18 @@
                 <div class="section-head">
 
                     <h2 class="section-title">
-                        Healthcare Spending vs Life Expectancy
+                        Healthcare Expenditure and Life Expectancy
                     </h2>
 
                     <p class="section-text">
-                        Explore whether countries that spend more on
-                        healthcare per person tend to have higher
-                        life expectancy.
+                        Explore the relationship between healthcare spending
+                        per person and life expectancy across the selected
+                        OECD countries.
                     </p>
 
                 </div>
 
-                <!-- Scatter plot will be created here using D3 -->
+                <!-- Use D3 to create a scatter plot. -->
                 <div id="visual-1" class="visualisation"></div>
 
             </div>
@@ -102,14 +213,14 @@
                     </h2>
 
                     <p class="section-text">
-                        Compare how healthcare expenditure per person
-                        has changed across selected OECD countries
+                        Analyse how healthcare expenditure per person
+                        has changed across the selected OECD countries
                         from 2015 to 2024.
                     </p>
 
                 </div>
 
-                <!-- Healthcare spending line chart -->
+                <!-- The following line chart illustrates healthcare spending. -->
                 <div id="visual-2" class="visualisation"></div>
 
             </div>
@@ -132,8 +243,8 @@
                     </h2>
 
                     <p class="section-text">
-                        Explore how life expectancy has changed across
-                        selected OECD countries between 2015 and 2024.
+                        Explore the differences in life expectancy between
+                        the selected OECD countries from 2015 to 2024.
                     </p>
 
                 </div>
@@ -157,7 +268,7 @@
                 <div class="section-head">
 
                     <h2 class="section-title">
-                        What the Decade Shows
+                        The Decade Shows
                     </h2>
 
                 </div>
@@ -172,14 +283,14 @@
                         </p>
 
                         <h3>
-                            Spending varies across countries
+                            There are differences in spending between countries.
                         </h3>
 
                         <p>
-                            Healthcare expenditure per person differs
-                            considerably across the selected OECD countries.
-                            The visualisations allow these differences to be
-                            compared across countries and over time.
+                            Per capita healthcare spending varies significantly
+                            across the selected OECD countries. The visualisations
+                            enable these differences to be compared among
+                            countries and over time.
                         </p>
 
                     </div>
@@ -192,15 +303,14 @@
                         </p>
 
                         <h3>
-                            Health outcomes also vary
+                            There are also some variations in health outcomes.
                         </h3>
 
                         <p>
-                            Life expectancy differs between the selected
-                            countries. Exploring these differences alongside
-                            healthcare expenditure helps users investigate
-                            the relationship between spending and health
-                            outcomes.
+                            The selected countries have varying life expectancy.
+                            Exploring these differences alongside healthcare
+                            expenditure allows users to investigate the
+                            relationship between spending and health outcomes.
                         </p>
 
                     </div>
@@ -217,11 +327,10 @@
                         </h3>
 
                         <p>
-                            By comparing healthcare spending and life
-                            expectancy together, the project investigates
-                            whether higher healthcare expenditure is
-                            associated with longer life expectancy across
-                            selected OECD countries.
+                            By comparing healthcare spending and life expectancy
+                            together, the project explores whether higher
+                            healthcare expenditure is associated with longer
+                            life expectancy across the selected OECD countries.
                         </p>
 
                     </div>
@@ -246,16 +355,18 @@
             <p>
                 Data Source:
 
-                <a href="https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_HEALTH_STAT%40DF_LE&df[ag]=OECD.ELS.HD&df[vs]=1.1"
-                    target="_blank">
+                <a href="https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&amp;df[id]=DSD_HEALTH_STAT%40DF_LE&amp;df[ag]=OECD.ELS.HD&amp;df[vs]=1.1"
+                    target="_blank"
+                    rel="noopener noreferrer">
                     Life Expectancy
                 </a>
 
                 &amp;
 
-                <a href="https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_SHA%40DF_SHA&df[ag]=OECD.ELS.HD&df[vs]=1.1"
-                    target="_blank">
-                    Health Expenditure and Financing
+                <a href="https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&amp;df[id]=DSD_SHA%40DF_SHA&amp;df[ag]=OECD.ELS.HD&amp;df[vs]=1.1"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Health spending and funding
                 </a>
 
                 <br><br>

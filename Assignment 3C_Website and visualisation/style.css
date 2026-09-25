@@ -1,189 +1,384 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap');
 
-:root{
-  --background: #FBFAF6;
-  --panel: #F2F0E9;
-  --text: #1C231F;
-  --text-secondary: #4A5049;
-  --line: #D9D5C8;
-  --teal: #1D6B5C;
+/* ---------- Global Variables ---------- */
 
-  --serif: 'Fraunces', Georgia, serif;
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+:root {
+    --background: #FBFAF6;
+    --panel: #F2F0E9;
+    --text: #1C231F;
+    --text-secondary: #4A5049;
+    --line: #D9D5C8;
+    --teal: #1D6B5C;
+    --rust: #A35B43;
 
-  --max: 1120px;
-  /* --measure: 640px; */
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --max: 1120px;
+    --measure: 640px;
 }
 
-*{ box-sizing: border-box; }
+/* ---------- General Styling ---------- */
 
-html{ scroll-behavior: smooth; }
-
-body{
-  margin: 0;
-  background: var(--background);
-  color: var(--text);
-  font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.55;
+* {
+    box-sizing: border-box;
 }
 
-.wrap{
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 32px;
+html {
+    scroll-behavior: smooth;
 }
 
-/* .prose{
-  max-width: var(--measure);
-} */
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 32px;
+}
 
 /* ---------- Banner ---------- */
 
-.banner{
-  padding: 120px 32px 96px;
-  border-bottom: 1px solid var(--line);
+.banner {
+    padding: 120px 32px 96px;
+    border-bottom: 1px solid var(--line);
 }
 
-.banner-subtitle{
-  font-family: var(--sans);
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin: 0 0 20px;
-  letter-spacing: 0.01em;
+.banner-subtitle {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 20px;
+    letter-spacing: 0.01em;
 }
 
-.banner-title{
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(2.4rem, 5.4vw, 4.4rem);
-  line-height: 1.04;
-  letter-spacing: -0.01em;
-  margin: 0 0 28px;
-  max-width: 920px;
+.banner-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    margin: 0 0 28px;
+    max-width: 920px;
 }
 
-.banner-title em{
-  font-style: italic;
-  font-weight: 500;
-  color: var(--teal);
+.banner-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--teal);
 }
 
-.banner-summary{
-  font-size: 19px;
-  color: var(--text-secondary);
-  max-width: 75%;
-  margin: 0;
+.banner-summary {
+    font-size: 19px;
+    color: var(--text-secondary);
+    max-width: 75%;
+    margin: 0;
 }
 
 /* ---------- Sections ---------- */
 
-section{
-  padding: 88px 0;
-  border-bottom: 1px solid var(--line);
+section {
+    padding: 88px 0;
+    border-bottom: 1px solid var(--line);
 }
 
-section:last-of-type{ border-bottom: none; }
-
-.section-head{
-  margin-bottom: 48px;
+section:last-of-type {
+    border-bottom: none;
 }
 
-.section-title{
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(1.7rem, 3vw, 2.3rem);
-  margin: 0 0 14px;
-  letter-spacing: -0.005em;
+.section-head {
+    margin-bottom: 48px;
 }
 
-.section-text{
-  color: var(--text-secondary);
-  font-size: 17px;
-  max-width: var(--measure);
-  margin: 0;
+.section-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    margin: 0 0 14px;
+    letter-spacing: -0.005em;
+}
+
+.section-text {
+    color: var(--text-secondary);
+    font-size: 17px;
+    max-width: var(--measure);
+    margin: 0;
+}
+
+/* ---------- Guiding Questions ---------- */
+
+#guiding-questions {
+    background: var(--panel);
+}
+
+.questions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.question-card {
+    background: var(--background);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px;
+}
+
+.question-number {
+    display: block;
+    color: var(--teal);
+    font-family: var(--serif);
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.question-card p {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0 0 20px;
+}
+
+.question-card a {
+    color: var(--teal);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.question-card a:hover {
+    text-decoration: underline;
+}
+
+.question-card a:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 4px;
+    border-radius: 2px;
 }
 
 /* ---------- Takeaways ---------- */
 
-.takeaways{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
+.takeaways {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
 }
 
-.takeaway-num{
-  font-family: var(--serif);
-  font-size: 15px;
-  font-style: italic;
-  color: var(--rust);
-  margin: 0 0 10px;
+.takeaway-num {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--rust);
+    margin: 0 0 10px;
 }
 
-.takeaway h3{
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 19px;
-  margin: 0 0 10px;
+.takeaway h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 19px;
+    margin: 0 0 10px;
 }
 
-.takeaway p{
-  font-size: 15px;
-  color: var(--text-secondary);
-  margin: 0;
+.takeaway p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: 0;
 }
 
 /* ---------- Footer ---------- */
 
-footer{
-  padding: 48px 0 80px;
-  /* padding: 88px 0; */
-  border-top: 1px solid var(--line);
-  text-align: center;
+footer {
+    padding: 48px 0 80px;
+    border-top: 1px solid var(--line);
+    text-align: center;
 }
 
-footer p{
-  font-size: 13px;
-  color: var(--text-secondary);
-  max-width: var(--measure);
+footer p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    max-width: var(--measure);
+    margin: 0 auto 20px;
 }
+
+footer a {
+    color: var(--teal);
+}
+
 /* ---------- D3 Visualisations ---------- */
 
 .visualisation {
-  width: 100%;
-  min-height: 500px;
+    width: 100%;
+    min-height: 500px;
 }
 
 .visualisation svg {
-  display: block;
-  width: 100%;
-  max-width: 950px;
-  margin: 0 auto;
-  overflow: visible;
+    display: block;
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+    overflow: visible;
 }
 
 .scatter-dot {
-  fill: var(--teal);
-  opacity: 0.8;
-  stroke: var(--background);
-  stroke-width: 2px;
+    fill: var(--teal);
+    opacity: 0.8;
+    stroke: var(--background);
+    stroke-width: 2px;
 }
 
 .country-label {
-  font-family: var(--sans);
-  font-size: 12px;
-  fill: var(--text-secondary);
+    font-family: var(--sans);
+    font-size: 12px;
+    fill: var(--text-secondary);
 }
 
 .axis-label {
-  font-family: var(--sans);
-  font-size: 14px;
-  fill: var(--text);
-  font-weight: 500;
+    font-family: var(--sans);
+    font-size: 14px;
+    fill: var(--text);
+    font-weight: 500;
 }
 
 .chart-note {
-  font-family: var(--sans);
-  font-size: 12px;
-  fill: var(--text-secondary);
+    font-family: var(--sans);
+    font-size: 12px;
+    fill: var(--text-secondary);
+}
+
+/* ---------- Interactive Chart Tooltips ---------- */
+
+.chart-tooltip {
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+    background: #1C231F;
+    color: #FFFFFF;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.6;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    max-width: 260px;
+}
+
+.chart-tooltip strong {
+    font-size: 14px;
+}
+
+.scatter-dot,
+.chart-point {
+    cursor: pointer;
+}
+
+.scatter-dot:hover,
+.chart-point:hover {
+    stroke: #1C231F;
+    stroke-width: 2px;
+}
+
+/* ---------- Responsive Layout ---------- */
+
+@media (max-width: 700px) {
+
+    .wrap {
+        padding: 0 20px;
+    }
+
+    .banner {
+        padding: 72px 0 64px;
+    }
+
+    .banner-summary {
+        max-width: 100%;
+        font-size: 17px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    .section-head {
+        margin-bottom: 32px;
+    }
+
+    .questions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .question-card {
+        padding: 22px;
+    }
+
+    .takeaways {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .visualisation {
+        min-height: 350px;
+    }
+
+    footer {
+        padding: 40px 0 60px;
+    }
+    /* ---------- Mobile Chart Layout ---------- */
+
+@media screen and (max-width: 600px) {
+
+  .wrap {
+    padding: 0 20px;
+  }
+
+  .banner {
+    padding: 64px 0 56px;
+  }
+
+  .banner-summary {
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  section {
+    padding: 56px 0;
+  }
+
+  .section-head {
+    margin-bottom: 28px;
+  }
+
+  .visualisation {
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-height: 480px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .visualisation svg {
+    width: 900px;
+    max-width: none;
+    margin: 0;
+  }
+
+  .takeaways {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .chart-tooltip {
+    max-width: 180px;
+    font-size: 12px;
+  }
+
+}
 }
