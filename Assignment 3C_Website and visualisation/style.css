@@ -193,6 +193,10 @@ section:last-of-type {
     margin: 0;
 }
 
+#key-takeaways {
+    background: var(--panel);
+}
+
 /* ---------- Footer ---------- */
 
 footer {

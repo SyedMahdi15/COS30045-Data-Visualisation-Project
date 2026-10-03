@@ -6,8 +6,10 @@
      "Australia", "Canada", "France", "Germany", "Italy",
      "Japan", "Korea", "New Zealand", "United Kingdom", "United States"
  ];
- 
 
+ let selectedCountry = null;
+
+ 
  // ==============================
  // INTERACTIVE TOOLTIP
  // ==============================
@@ -48,10 +50,51 @@
  }
 
  // ==============================
+ // COUNTRY FILTERING
+ // ==============================
+ function filterCountry(country) {
+
+    selectedCountry = country;
+
+    d3.selectAll(".scatter-dot")
+        .style("opacity", d =>
+            !country || d.country === country ? 1 : 0.1
+        );
+
+    d3.selectAll(".country-label")
+        .style("opacity", d =>
+            !country || d.country === country ? 1 : 0.1
+        );
+
+    d3.selectAll(".spending-line")
+        .style("opacity", d =>
+            !country || d.country === country ? 1 : 0.1
+        );
+
+    d3.selectAll(".country-line")
+        .style("opacity", d =>
+            !country || d.country === country ? 1 : 0.1
+        );
+
+    d3.selectAll(".chart-point")
+        .style("opacity", d =>
+            !country || d.country === country ? 1 : 0.1
+        );
+
+    d3.selectAll(".legend-item")
+        .style("opacity", d =>
+            !country || d === country ? 1 : 0.3
+        );
+ }
+
+ // ==============================
  // COUNTRY HIGHLIGHTING
  // ==============================
 
  function highlightCountry(chart, legend, country) {
+
+     if (selectedCountry) return;
+
      chart.selectAll(".country-line")
          .style("opacity", d => d.country === country ? 1 : 0.15)
          .style("stroke-width", d => d.country === country ? 4 : 2.5);
@@ -65,6 +108,11 @@
  }
 
  function resetHighlight(chart, legend) {
+     if (selectedCountry) {
+        filterCountry(selectedCountry);
+        return;
+     }
+
      chart.selectAll(".country-line")
          .style("opacity", 1)
          .style("stroke-width", 2.5);
@@ -184,13 +232,13 @@
 
      // Horizontal gridlines
      chart1.append("g")
-     .attr("class", "grid")
-     .call(
+        .attr("class", "grid")
+        .call(
      d3.axisLeft(y1)
-     .tickValues(y1.ticks(6).filter(d => d !== 85))
-     .tickSize(-innerWidth1)
-     .tickFormat(""))
-     .call(g => g.select(".domain").remove());
+        .tickValues(y1.ticks(6).filter(d => d !== 85))
+        .tickSize(-innerWidth1)
+        .tickFormat(""))
+        .call(g => g.select(".domain").remove());
 
      // Axes
      chart1.append("g")
@@ -230,21 +278,31 @@
          .attr("cy", d => y1(d.lifeExpectancy))
          .attr("r", 7)
          .attr("fill", d => colourScale(d.country))
-         .on("mouseover", function(event, d) {
-             showTooltip(event, `
-                 <strong>${d.country}</strong><br>
-                 Year: ${d.year}<br>
-                 Healthcare spending: $${d.healthSpending.toLocaleString("en-US", {
-                     maximumFractionDigits: 0
-                 })}<br>
-                 Life expectancy: ${d.lifeExpectancy.toFixed(1)} years
-             `);
-         })
+        .style("cursor", "pointer")
+        .on("click", function(event, d) {
+         
+        if (selectedCountry === d.country) {
+        filterCountry(null);
+        } else {
+        filterCountry(d.country);
+        }
+         
+        })
+        .on("mouseover", function(event, d) {
+        showTooltip(event, `
+        <strong>${d.country}</strong><br>
+        Year: ${d.year}<br>
+        Healthcare spending: $${d.healthSpending.toLocaleString("en-US", {
+        maximumFractionDigits: 0
+        })}<br>
+        Life expectancy: ${d.lifeExpectancy.toFixed(1)} years
+        `);
+        })
          .on("mousemove", moveTooltip)
          .on("mouseout", hideTooltip);
 
      // Country label positions
-    const labelOffsets = {
+     const labelOffsets = {
         "Australia": [10, -10],
         "Canada": [10, 16],
         "France": [-10, -9],
@@ -427,12 +485,29 @@
              `translate(0,${i * 34})`
          )
          .style("cursor", "pointer")
+        //  .on("mouseover", function(event, country) {
+        //      highlightCountry(chart2, legend2, country);
+        //  })
+        //  .on("mouseout", function() {
+        //      resetHighlight(chart2, legend2);
          .on("mouseover", function(event, country) {
-             highlightCountry(chart2, legend2, country);
+         if (!selectedCountry) {
+            highlightCountry(chart2, legend2, country);
+         }
          })
          .on("mouseout", function() {
-             resetHighlight(chart2, legend2);
-         });
+         if (!selectedCountry) {
+            resetHighlight(chart2, legend2);
+         }
+         })
+         .on("click", function(event, country) {
+         
+         if (selectedCountry === country) {
+            filterCountry(null);
+         } else {
+            filterCountry(country);
+         }
+        });
 
      legendItems2.append("circle")
          .attr("cx", 0)
@@ -591,12 +666,29 @@
              `translate(0,${i * 34})`
          )
          .style("cursor", "pointer")
-         .on("mouseover", function(event, country) {
-             highlightCountry(chart3, legend3, country);
+        //  .on("mouseover", function(event, country) {
+        //      highlightCountry(chart3, legend3, country);
+        //  })
+        //  .on("mouseout", function() {
+        //      resetHighlight(chart3, legend3);
+        .on("mouseover", function(event, country) {
+         if (!selectedCountry) {
+            highlightCountry(chart3, legend3, country);
+         }
          })
-         .on("mouseout", function() {
-             resetHighlight(chart3, legend3);
-         });
+        .on("mouseout", function() {
+         if (!selectedCountry) {
+            resetHighlight(chart3, legend3);
+         }
+         })
+        .on("click", function(event, country) {
+         
+         if (selectedCountry === country) {
+            filterCountry(null);
+         } else {
+            filterCountry(country);
+         }
+        });
 
      legendItems3.append("circle")
          .attr("cx", 0)
