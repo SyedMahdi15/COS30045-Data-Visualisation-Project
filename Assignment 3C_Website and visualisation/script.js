@@ -6,6 +6,7 @@
      "Australia", "Canada", "France", "Germany", "Italy",
      "Japan", "Korea", "New Zealand", "United Kingdom", "United States"
  ];
+ 
 
  // ==============================
  // INTERACTIVE TOOLTIP
@@ -181,6 +182,16 @@
          .domain([lifeExtent[0] - 1, lifeExtent[1] + 1])
          .range([innerHeight1, 0]);
 
+     // Horizontal gridlines
+     chart1.append("g")
+     .attr("class", "grid")
+     .call(
+     d3.axisLeft(y1)
+     .tickValues(y1.ticks(6).filter(d => d !== 85))
+     .tickSize(-innerWidth1)
+     .tickFormat(""))
+     .call(g => g.select(".domain").remove());
+
      // Axes
      chart1.append("g")
          .attr("transform", `translate(0,${innerHeight1})`)
@@ -218,6 +229,7 @@
          .attr("cx", d => x1(d.healthSpending))
          .attr("cy", d => y1(d.lifeExpectancy))
          .attr("r", 7)
+         .attr("fill", d => colourScale(d.country))
          .on("mouseover", function(event, d) {
              showTooltip(event, `
                  <strong>${d.country}</strong><br>
@@ -232,23 +244,24 @@
          .on("mouseout", hideTooltip);
 
      // Country label positions
-     const labelOffsets = {
-         "Australia": [10, -10],
-         "Canada": [10, 16],
-         "France": [10, -18],
-         "Germany": [10, 18],
-         "Italy": [10, -10],
-         "Japan": [10, -12],
-         "Korea": [10, 18],
-         "New Zealand": [10, -12],
-         "United Kingdom": [10, 18],
-         "United States": [-12, -12]
-     };
+    const labelOffsets = {
+        "Australia": [10, -10],
+        "Canada": [10, 16],
+        "France": [-10, -9],
+        "Germany": [10, 18],
+        "Italy": [13, 0],
+        "Japan": [10, -12],
+        "Korea": [-10, 18],
+        "New Zealand": [-10, -6],
+        "United Kingdom": [10, 18],
+        "United States": [-12, -12]
+        };
 
      chart1.selectAll(".country-label")
          .data(scatterData)
          .enter()
          .append("text")
+         .attr("fill", d => colourScale(d.country))
          .attr("class", "country-label")
          .attr("x", d =>
              x1(d.healthSpending) + labelOffsets[d.country][0]
@@ -257,7 +270,8 @@
              y1(d.lifeExpectancy) + labelOffsets[d.country][1]
          )
          .attr("text-anchor", d =>
-             d.country === "United States" ? "end" : "start"
+["France", "Korea", "New Zealand", "United States"]
+.includes(d.country) ? "end" : "start"
          )
          .text(d => d.country);
 
@@ -322,7 +336,8 @@
                  .ticks(6)
                  .tickFormat(d => "$" + d3.format(",")(d))
          );
-
+    
+     
      // Axis labels
      chart2.append("text")
          .attr("x", innerWidth2 / 2)
@@ -350,7 +365,7 @@
 
      // Create legend group before adding hover handlers
      const legend2 = svg2.append("g")
-         .attr("transform", `translate(${width2 - 155},40)`);
+         .attr("transform", `translate(${width2 - 120},40)`);
 
      spendingByCountry.forEach(function(values, country) {
 
@@ -516,7 +531,7 @@
 
      // Create legend group before adding hover handlers
      const legend3 = svg3.append("g")
-         .attr("transform", `translate(${width3 - 155},40)`);
+         .attr("transform", `translate(${width3 - 120},40)`);
 
      lifeByCountry.forEach(function(values, country) {
 
