@@ -329,9 +329,20 @@
          )
          .attr("text-anchor", d =>
 ["France", "Korea", "New Zealand", "United States"]
-.includes(d.country) ? "end" : "start"
+         .includes(d.country) ? "end" : "start"
          )
+         .style("cursor", "pointer")
+         .on("click", function(event, d) {
+         
+         if (selectedCountry === d.country) {
+            filterCountry(null);
+         } else {
+         filterCountry(d.country);
+         }
+         
+         })
          .text(d => d.country);
+         
 
      svg1.append("text")
          .attr("x", width1 - 40)
@@ -485,11 +496,6 @@
              `translate(0,${i * 34})`
          )
          .style("cursor", "pointer")
-        //  .on("mouseover", function(event, country) {
-        //      highlightCountry(chart2, legend2, country);
-        //  })
-        //  .on("mouseout", function() {
-        //      resetHighlight(chart2, legend2);
          .on("mouseover", function(event, country) {
          if (!selectedCountry) {
             highlightCountry(chart2, legend2, country);
@@ -666,11 +672,6 @@
              `translate(0,${i * 34})`
          )
          .style("cursor", "pointer")
-        //  .on("mouseover", function(event, country) {
-        //      highlightCountry(chart3, legend3, country);
-        //  })
-        //  .on("mouseout", function() {
-        //      resetHighlight(chart3, legend3);
         .on("mouseover", function(event, country) {
          if (!selectedCountry) {
             highlightCountry(chart3, legend3, country);
