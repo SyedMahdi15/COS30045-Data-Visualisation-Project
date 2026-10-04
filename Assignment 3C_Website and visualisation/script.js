@@ -9,7 +9,6 @@
 
  let selectedCountry = null;
 
- 
  // ==============================
  // INTERACTIVE TOOLTIP
  // ==============================
@@ -185,16 +184,14 @@
      // HEALTHCARE SPENDING VS LIFE EXPECTANCY
      // ==================================================
 
-     const scatterData = countries.map(country =>
-         mergedData
-             .filter(d =>
-                 d.country === country &&
-                 d.healthSpending !== null &&
-                 !isNaN(d.healthSpending) &&
-                 !isNaN(d.lifeExpectancy)
-             )
-             .sort((a, b) => b.year - a.year)[0]
-     ).filter(d => d);
+     const scatterData = countries.map(country => mergedData
+        .filter(d =>
+            d.country === country &&
+            d.healthSpending !== null &&
+            !isNaN(d.healthSpending) &&
+            !isNaN(d.lifeExpectancy))
+        .sort((a, b) => b.year - a.year)[0])
+        .filter(d => d);
 
      const margin1 = {
          top: 40,
@@ -246,8 +243,7 @@
          .call(
              d3.axisBottom(x1)
                  .ticks(6)
-                 .tickFormat(d => "$" + d3.format(",")(d))
-         );
+                 .tickFormat(d => "$" + d3.format(",")(d)));
 
      chart1.append("g")
          .call(d3.axisLeft(y1).ticks(6));
@@ -278,17 +274,15 @@
          .attr("cy", d => y1(d.lifeExpectancy))
          .attr("r", 7)
          .attr("fill", d => colourScale(d.country))
-        .style("cursor", "pointer")
-        .on("click", function(event, d) {
+         .style("cursor", "pointer")
+         .on("click", function(event, d) {
          
-        if (selectedCountry === d.country) {
-        filterCountry(null);
-        } else {
-        filterCountry(d.country);
-        }
-         
-        })
-        .on("mouseover", function(event, d) {
+            if (selectedCountry === d.country) {
+                filterCountry(null);
+            } else {
+                filterCountry(d.country);
+            }})
+         .on("mouseover", function(event, d) {
         showTooltip(event, `
         <strong>${d.country}</strong><br>
         Year: ${d.year}<br>
@@ -327,10 +321,8 @@
          .attr("y", d =>
              y1(d.lifeExpectancy) + labelOffsets[d.country][1]
          )
-         .attr("text-anchor", d =>
-["France", "Korea", "New Zealand", "United States"]
-         .includes(d.country) ? "end" : "start"
-         )
+         .attr("text-anchor", d => ["France", "Korea", "New Zealand", "United States"]
+         .includes(d.country) ? "end" : "start")
          .style("cursor", "pointer")
          .on("click", function(event, d) {
          
@@ -338,12 +330,9 @@
             filterCountry(null);
          } else {
          filterCountry(d.country);
-         }
-         
-         })
+         }})
          .text(d => d.country);
          
-
      svg1.append("text")
          .attr("x", width1 - 40)
          .attr("y", 25)
@@ -403,10 +392,9 @@
          .call(
              d3.axisLeft(y2)
                  .ticks(6)
-                 .tickFormat(d => "$" + d3.format(",")(d))
-         );
+                 .tickFormat(d => "$" + d3.format(",")(d)));
     
-     
+    
      // Axis labels
      chart2.append("text")
          .attr("x", innerWidth2 / 2)
@@ -425,8 +413,7 @@
 
      const spendingByCountry = d3.group(
          spendingData,
-         d => d.country
-     );
+         d => d.country);
 
      const spendingLine = d3.line()
          .x(d => x2(d.year))
@@ -497,22 +484,21 @@
          )
          .style("cursor", "pointer")
          .on("mouseover", function(event, country) {
-         if (!selectedCountry) {
-            highlightCountry(chart2, legend2, country);
-         }
-         })
+            if (!selectedCountry) {
+                highlightCountry(chart2, legend2, country);
+            }
+            })
          .on("mouseout", function() {
-         if (!selectedCountry) {
-            resetHighlight(chart2, legend2);
-         }
-         })
+            if (!selectedCountry) {
+                resetHighlight(chart2, legend2);
+            }
+            })
          .on("click", function(event, country) {
-         
-         if (selectedCountry === country) {
-            filterCountry(null);
-         } else {
-            filterCountry(country);
-         }
+            if (selectedCountry === country) {
+                filterCountry(null);
+            } else {
+                filterCountry(country);
+            }
         });
 
      legendItems2.append("circle")
@@ -533,8 +519,7 @@
      // ==================================================
 
      const lifeTrendData = mergedData.filter(d =>
-         !isNaN(d.lifeExpectancy)
-     );
+         !isNaN(d.lifeExpectancy));
 
      const margin3 = {
          top: 30,
@@ -563,8 +548,7 @@
 
      const lifeTrendExtent = d3.extent(
          lifeTrendData,
-         d => d.lifeExpectancy
-     );
+         d => d.lifeExpectancy);
 
      const y3 = d3.scaleLinear()
          .domain([
@@ -579,8 +563,7 @@
          .call(
              d3.axisBottom(x3)
                  .tickValues(d3.range(2015, 2025))
-                 .tickFormat(d3.format("d"))
-         );
+                 .tickFormat(d3.format("d")));
 
      chart3.append("g")
          .call(d3.axisLeft(y3).ticks(7));
@@ -603,8 +586,7 @@
 
      const lifeByCountry = d3.group(
          lifeTrendData,
-         d => d.country
-     );
+         d => d.country);
 
      const lifeLine = d3.line()
          .x(d => x3(d.year))
@@ -673,23 +655,22 @@
          )
          .style("cursor", "pointer")
         .on("mouseover", function(event, country) {
-         if (!selectedCountry) {
-            highlightCountry(chart3, legend3, country);
-         }
+            if (!selectedCountry) {
+                highlightCountry(chart3, legend3, country);
+            }
          })
         .on("mouseout", function() {
-         if (!selectedCountry) {
-            resetHighlight(chart3, legend3);
-         }
+            if (!selectedCountry) {
+                resetHighlight(chart3, legend3);
+            }
          })
         .on("click", function(event, country) {
          
-         if (selectedCountry === country) {
-            filterCountry(null);
-         } else {
-            filterCountry(country);
-         }
-        });
+            if (selectedCountry === country) {
+                filterCountry(null);
+            } else {
+                filterCountry(country);
+            }});
 
      legendItems3.append("circle")
          .attr("cx", 0)
