@@ -417,6 +417,7 @@ display: none;
         font-size: 14px;
         color: var(--text-secondary);
     }
+}
     
 /* ---------- Mobile Chart Layout ---------- */
 
@@ -467,6 +468,6 @@ display: none;
   }
 
 }
-}
+
 
 
