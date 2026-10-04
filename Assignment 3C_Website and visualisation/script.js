@@ -8,6 +8,8 @@
  ];
 
  let selectedCountry = null;
+ let mergedData = [];
+ let lastAnimatedCountry = null;
 
  // ==============================
  // INTERACTIVE TOOLTIP
@@ -49,11 +51,103 @@
  }
 
  // ==============================
+ // SUMMARY FOR FILTERED COUNTRY
+ // ==============================
+
+ function updateSummaries(country) {
+
+    if (!country) {
+
+        d3.select("#summary-1")
+            .html("Select a country to view summary statistics.");
+
+        d3.select("#summary-2")
+            .html("Select a country to view summary statistics.");
+
+        d3.select("#summary-3")
+            .html("Select a country to view summary statistics.");
+
+        return;
+    }
+
+    const countryData = mergedData
+        .filter(d => d.country === country)
+        .sort((a, b) => a.year - b.year);
+
+    const start = countryData.find(d => d.year === 2015);
+    const end = countryData.find(d => d.year === 2024);
+
+    const spendingChange =
+        ((end.healthSpending - start.healthSpending) /
+        start.healthSpending) * 100;
+
+    const lifeChange =
+        ((end.lifeExpectancy - start.lifeExpectancy) /
+        start.lifeExpectancy) * 100;
+
+    // Visual 1
+    d3.select("#summary-1")
+        .html(`
+            <strong>${country}</strong> recorded a healthcare expenditure of
+            <strong>$${end.healthSpending.toLocaleString()}</strong>
+            per person and a life expectancy of
+            <strong>${end.lifeExpectancy.toFixed(1)} years</strong>
+            in 2024.
+        `);
+
+    // Visual 2
+    d3.select("#summary-2")
+        .html(`
+            Between 2015 and 2024, <strong>${country}'s </strong>healthcare expenditure per person
+            <strong>${spendingChange >= 0 ? "increased" : "decreased"}</strong>
+            by <strong>${Math.abs(spendingChange).toFixed(1)}%</strong>,
+            rising from
+            <strong>$${start.healthSpending.toLocaleString()}</strong>
+            to
+            <strong>$${end.healthSpending.toLocaleString()}</strong>.
+        `);
+
+    // Visual 3
+    d3.select("#summary-3")
+        .html(`
+            Between 2015 and 2024, <strong>${country}'s </strong>life expectancy
+            <strong>${lifeChange >= 0 ? "increased" : "decreased"}</strong>
+            by <strong>${Math.abs(lifeChange).toFixed(2)}%</strong>,
+            changing from
+            <strong>${start.lifeExpectancy.toFixed(1)} years</strong>
+            to
+            <strong>${end.lifeExpectancy.toFixed(1)} years</strong>.
+        `);
+ }
+
+ // ==============================
  // COUNTRY FILTERING
  // ==============================
  function filterCountry(country) {
 
     selectedCountry = country;
+    updateSummaries(country);
+
+    if (country && country !== lastAnimatedCountry) {
+
+    lastAnimatedCountry = country;
+
+    d3.selectAll(".country-line")
+        .filter(d => d.country === country)
+        .each(function() {
+
+            const length = this.getTotalLength();
+
+            d3.select(this)
+                .attr("stroke-dasharray", `${length} ${length}`)
+                .attr("stroke-dashoffset", length)
+                .transition()
+                .duration(4000)
+                .ease(d3.easeLinear)
+                .attr("stroke-dashoffset", 0);
+
+        });
+}
 
     d3.selectAll(".scatter-dot")
         .style("opacity", d =>
@@ -125,6 +219,23 @@
  }
 
  // ==============================
+ // RESEARCH QUESTION ANSWERS
+ // ==============================
+ document.querySelectorAll(".flip-card")
+    .forEach(card => {
+        card.addEventListener("click", function() {
+        card.classList.toggle("flipped");
+    });
+});
+
+document.querySelectorAll(".flip-card a")
+    .forEach(link => {
+        link.addEventListener("click", function(event) {
+            event.stopPropagation();
+        });
+    });
+
+ // ==============================
  // LOAD AND PREPARE DATA
  // ==============================
 
@@ -157,7 +268,7 @@
      );
 
      // Merge datasets using country and year
-     const mergedData = filteredLife.map(life => {
+     mergedData = filteredLife.map(life => {
 
          const health = filteredHealth.find(h =>
              h["Reference area"] === life["Reference area"] &&
@@ -171,6 +282,7 @@
              healthSpending: health ? +health["OBS_VALUE"] : null
          };
      });
+
 
      console.log("Merged Data:", mergedData);
 
@@ -611,6 +723,16 @@
              .attr("stroke", colourScale(country))
              .attr("stroke-width", 2.5)
              .attr("d", d => lifeLine(d.values))
+             .each(function() {
+                const length = this.getTotalLength();
+                    d3.select(this)
+                    .attr("stroke-dasharray", `${length} ${length}`)
+                    .attr("stroke-dashoffset", length)
+                    .transition()
+                    .duration(2500)
+                    .ease(d3.easeLinear)
+                    .attr("stroke-dashoffset", 0);
+             })
              .on("mouseover", function() {
                  highlightCountry(chart3, legend3, country);
              })
@@ -683,7 +805,9 @@
          .attr("y", 4)
          .attr("class", "legend-text")
          .text(country => country);
-
+updateSummaries(null);
  }).catch(function(error) {
      console.error("Error loading OECD datasets:", error);
  });
+
+ 

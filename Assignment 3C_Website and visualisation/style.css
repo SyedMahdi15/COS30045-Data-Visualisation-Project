@@ -301,6 +301,57 @@ display: none;
     stroke-width: 2px;
 }
 
+/* ---------- Visualisation filtered country summary ---------- */
+.chart-summary {
+    margin: 10px 0 30px 0;
+    padding: 12px 16px;
+    background-color: rgba(29, 107, 92, 0.05);
+    border-left: 4px solid var(--teal);
+    color: var(--text);
+    border-radius: 4px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* ---------- Interactive guiding question card ---------- */
+.flip-card {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    backface-visibility: hidden;
+
+    border-radius: 12px;
+    padding: 20px;
+
+    box-sizing: border-box;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
 /* ---------- Responsive Layout ---------- */
 
 @media (max-width: 700px) {
@@ -417,3 +468,5 @@ display: none;
 
 }
 }
+
+
