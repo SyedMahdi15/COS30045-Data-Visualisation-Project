@@ -805,7 +805,9 @@ document.querySelectorAll(".flip-card a")
          .attr("y", 4)
          .attr("class", "legend-text")
          .text(country => country);
+
 updateSummaries(null);
+
  }).catch(function(error) {
      console.error("Error loading OECD datasets:", error);
  });
